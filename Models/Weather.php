@@ -3,7 +3,7 @@
 class Weather
 {
     private $file;
-    private $withoutATitle;
+    private $withoutTitle;
 
     function __construct($file)
     {
@@ -26,45 +26,35 @@ class Weather
         return $result;
     }
 
-    function csvToArrayWithoutATitle()
+    function csvToArrayWithoutTitle()
     {
-        if ($this->withoutATitle) {
-            return $this->withoutATitle;
+        if ($this->withoutTitle) {
+            return $this->withoutTitle;
         }
         $result = $this->csvToArray();
 
         array_shift($result);
-        $this->withoutATitle = $result;
+        $this->withoutTitle = $result;
 
         return $result;
     }
 
     function averageTemperatureByFormat($format)
     {
-
         $result = $this->weatherByFormat($format);
-        return array_map([$this, 'arithmeticMeanOfArray'], $result);
-
+        return array_map([Helper::class, 'arithmeticMeanOfArray'], $result);
     }
     
     function weatherByFormat($format)
     {
         $result = [];
-        foreach($this->csvToArrayWithoutATitle() as $value) {
+        foreach($this->csvToArrayWithoutTitle() as $value) {
             $datetime = new DateTime($value['datetime']);
-            if ('2023-02-15' === $datetime->format($format)) {
-                echo($value['datetime']);
-            }
             if (!$result[$datetime->format($format)]) {
                 $result[$datetime->format($format)] = [];
             }
             $result[$datetime->format($format)] []= $value['temperature'];
         }
         return $result;
-    }
-
-    function arithmeticMeanOfArray($a)
-    {
-        return array_sum($a)/count($a);
     }
 }
