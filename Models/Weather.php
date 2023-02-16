@@ -39,6 +39,25 @@ class Weather
         return $result;
     }
 
+    function movingAverageAndAverageTemperatureByFormat($format)
+    {
+        $averageTemperatureByFormat = $this->averageTemperatureByFormat($format);
+        $index = 0;
+        $previousKey = null;
+        $preExistingKey = null;
+        foreach ($averageTemperatureByFormat as $key => $value) {
+            $result[$key]['average'] = $value;
+            if ($preExistingKey) {
+                $result[$previousKey]['movingAverage'] = ($averageTemperatureByFormat[$preExistingKey] +
+                    $averageTemperatureByFormat[$previousKey] + $averageTemperatureByFormat[$key]) / 3;
+            }
+            $index++;
+            $preExistingKey = $previousKey;
+            $previousKey = $key;
+        }
+        return $result;
+    }
+
     function averageTemperatureByFormat($format)
     {
         $result = $this->weatherByFormat($format);

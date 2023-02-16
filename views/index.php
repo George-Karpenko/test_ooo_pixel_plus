@@ -12,9 +12,12 @@
         <th>
             Средняя температура за день
         </th>
+        <th>
+            Cкользящяя средняя температура за день
+        </th>
     </tr>
     <?php
-        foreach ($data['averageTemperatureByDay'] as $key => $value)
+        foreach ($data['movingAverageAndAverageTemperatureByDay'] as $key => $value)
         {
             include 'views/weather_table.php';
         }
@@ -31,9 +34,12 @@
         <th>
             Средняя температура за месяц
         </th>
+        <th>
+            Cкользящяя средняя температура за месяц
+        </th>
     </tr>
     <?php
-        foreach ($data['averageTemperatureByMonths'] as $key => $value)
+        foreach ($data['movingAverageAndAverageTemperatureByMonths'] as $key => $value)
         {
             include 'views/weather_table.php';
         }
@@ -50,9 +56,12 @@
         <th>
             Средняя температура за неделю
         </th>
+        <th>
+            Cкользящяя средняя температура за неделю
+        </th>
     </tr>
     <?php
-        foreach ($data['averageTemperatureByWeeks'] as $key => $value)
+        foreach ($data['movingAverageAndAverageTemperatureByWeeks'] as $key => $value)
         {
             include 'views/weather_table.php';
         }

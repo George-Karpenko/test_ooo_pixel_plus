@@ -13,9 +13,9 @@ class TablesWithWeatherController
         }
 
 		$this->view->generate('index.php', 'template_view.php', [
-            'averageTemperatureByDay' => $weather->averageTemperatureByFormat("Y-m-d"),
-            'averageTemperatureByWeeks' => $weather->averageTemperatureByFormat("W"),
-            'averageTemperatureByMonths' => $weather->averageTemperatureByFormat("M"),
+            'movingAverageAndAverageTemperatureByDay' => $weather->movingAverageAndAverageTemperatureByFormat("Y-m-d"),
+            'movingAverageAndAverageTemperatureByWeeks' => $weather->movingAverageAndAverageTemperatureByFormat("W"),
+            'movingAverageAndAverageTemperatureByMonths' => $weather->movingAverageAndAverageTemperatureByFormat("M"),
         ]);
     }
 }

@@ -6,7 +6,12 @@
     </td>
     <td>
         <?php
-            echo($value)
+            echo($value['average'])
+        ?>
+    </td>
+    <td>
+        <?php
+            echo($value['movingAverage'] ?? '-')
         ?>
     </td>
 </tr>
